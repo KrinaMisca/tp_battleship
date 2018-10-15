@@ -8,9 +8,7 @@ public class Bateau {
 	private Array[] position;
 	
 	public Bateau(String nom, int unites) {
-		Bateau bateau1 = new Bateau("bateau patrouille", 2);
-		Bateau bateau2 = new Bateau("sous-marin", 3);
-		Bateau bateau3 = new Bateau("destroyer", 3);
-		Bateau bateau4 = new Bateau("porte avion", 4);
+		this.nom = nom;
+		this.unites = unites;
 	}
 }
