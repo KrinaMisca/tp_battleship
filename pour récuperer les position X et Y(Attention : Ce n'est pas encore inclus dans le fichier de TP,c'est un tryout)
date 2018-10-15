@@ -1,0 +1,72 @@
+package App;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+
+public class Main {
+
+    private static final int N = 10;
+ 
+    private final List<JButton> list = new ArrayList<JButton>();
+
+    private JButton getGridButton(int x, int y) {
+        int index = x * N + y;
+        return list.get(index);
+    }
+
+    private JButton createGridButton(final int PositionX, final int PositionY) {
+        final JButton b = new JButton("" + PositionX + "" + PositionY);
+        b.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JButton gb = Main.this.getGridButton(PositionX, PositionY);
+                ((JButton)e.getSource()).setBackground(Color.red);
+                System.out.println("x" + PositionX + ",x" + PositionY
+                        + " " + (b == gb)
+                        + " " + (b.equals(gb)));
+            }
+        });
+        return b;
+    }
+
+    private JPanel createGridPanel() {
+        JPanel p = new JPanel(new GridLayout(10,10 ));
+        // pour la position X
+        for (int i = 0; i < 10 * 10; i++) {
+           
+        	int PositionX = i / 10;
+            int PositionY = i % 10;
+            JButton gb = createGridButton(PositionX, PositionY);
+            list.add(gb);
+            p.add(gb);
+        }
+        return p;
+    }
+
+    private void display() {
+        JFrame f = new JFrame("GridButton");
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.add(createGridPanel());
+        f.pack();
+        f.setLocationRelativeTo(null);
+        f.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        
+                new Main().display();
+                                        
+                }
+            
+        }
+    
